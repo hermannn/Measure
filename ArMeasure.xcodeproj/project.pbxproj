@@ -15,6 +15,8 @@
 		068B04A02040264700B35305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 068B049E2040264700B35305 /* LaunchScreen.storyboard */; };
 		068B04AB2040264800B35305 /* ArMeasureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B04AA2040264800B35305 /* ArMeasureTests.swift */; };
 		068B04B62040264800B35305 /* ArMeasureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B04B52040264800B35305 /* ArMeasureUITests.swift */; };
+		069E6EF72073AD3800A3AECD /* PoPUpLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E6EF62073AD3800A3AECD /* PoPUpLoadingView.swift */; };
+		069E6EF92073AD9C00A3AECD /* PopUpLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069E6EF82073AD9C00A3AECD /* PopUpLoadingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		068B04B12040264800B35305 /* ArMeasureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArMeasureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		068B04B52040264800B35305 /* ArMeasureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArMeasureUITests.swift; sourceTree = "<group>"; };
 		068B04B72040264800B35305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		069E6EF62073AD3800A3AECD /* PoPUpLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoPUpLoadingView.swift; sourceTree = "<group>"; };
+		069E6EF82073AD9C00A3AECD /* PopUpLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpLoadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				068B049C2040264700B35305 /* Assets.xcassets */,
 				068B049E2040264700B35305 /* LaunchScreen.storyboard */,
 				068B04A12040264700B35305 /* Info.plist */,
+				069E6EF62073AD3800A3AECD /* PoPUpLoadingView.swift */,
+				069E6EF82073AD9C00A3AECD /* PopUpLoadingView.xib */,
 			);
 			path = ArMeasure;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 			files = (
 				068B04962040264700B35305 /* art.scnassets in Resources */,
 				068B04A02040264700B35305 /* LaunchScreen.storyboard in Resources */,
+				069E6EF92073AD9C00A3AECD /* PopUpLoadingView.xib in Resources */,
 				068B049D2040264700B35305 /* Assets.xcassets in Resources */,
 				068B049B2040264700B35305 /* Main.storyboard in Resources */,
 			);
@@ -265,6 +272,7 @@
 			files = (
 				068B04982040264700B35305 /* ViewController.swift in Sources */,
 				068B04942040264700B35305 /* AppDelegate.swift in Sources */,
+				069E6EF72073AD3800A3AECD /* PoPUpLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7RDB5569QF;
+				DEVELOPMENT_TEAM = 35C6X642U8;
 				INFOPLIST_FILE = ArMeasure/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -447,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7RDB5569QF;
+				DEVELOPMENT_TEAM = 35C6X642U8;
 				INFOPLIST_FILE = ArMeasure/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
