@@ -35,14 +35,29 @@ func -(l: SCNVector3, r: SCNVector3) -> SCNVector3 {
     return SCNVector3Make(l.x - r.x, l.y - r.y, l.z - r.z)
 }
 
+enum StateHitBtn {
+    case draw
+    case none
+    
+    func label() -> String{
+        switch  self {
+        case .draw:
+            return "Stop"
+        case .none:
+            return "Measure"
+        }
+    }
+}
+
+
 class ViewController: UIViewController, ARSCNViewDelegate {
     
-    var finalNode:SCNNode?
     var startNode:SCNNode?
     var textNode: SCNNode?
     var lineNode:SCNNode?
     var endNode:SCNNode?
     var shouldDrawingLine = true
+    var statehitBtn: StateHitBtn = .none
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -51,29 +66,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return view
     }()
     
-    lazy var infoLabel: UILabel = {
-        let label = UILabel(frame: CGRect.zero)
-        label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
-        label.textAlignment = .center
-        label.backgroundColor = .white
-        return label
-    }()
-    
-    lazy var finishMeasureButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Finish", for: .normal)
-        return button
-    }()
-    
     lazy var reinitButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Reinit", for: .normal)
+        button.setTitle("Reinitialise", for: .normal)
         return button
     }()
     
     lazy var hitButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "add"), for: .normal)
+        button.setTitle("Measure", for: .normal)
+        //button.setImage(UIImage(named: "add"), for: .normal)
         return button
     }()
     
@@ -93,21 +95,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = false
         sceneView.addSubview(popUpView)
         sceneView.addSubview(reinitButton)
-        sceneView.addSubview(finishMeasureButton)
-        sceneView.addSubview(infoLabel)
         sceneView.addSubview(focusButton)
         sceneView.addSubview(hitButton)
         layoutPopUpView()
-        layoutFinishMeasureButton()
         layoutHitButton()
         layoutFocusButton()
         layoutReinitButton()
     }
-    
-    override func viewDidLayoutSubviews() {
-        infoLabel.frame = CGRect(x: 0, y: 16, width: view.bounds.width, height: 64)
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -126,27 +121,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-    
-    private func layoutPopUpView(){
+    private func layoutPopUpView() {
         popUpView.isHidden = false
         popUpView.translatesAutoresizingMaskIntoConstraints = false
         popUpView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         popUpView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         popUpView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
         popUpView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-    }
-    
-    private func layoutFinishMeasureButton(){
-        finishMeasureButton.isHidden = true
-        finishMeasureButton.translatesAutoresizingMaskIntoConstraints = false
-        finishMeasureButton.bottomAnchor.constraint(equalTo: self.sceneView.bottomAnchor, constant: -15).isActive = true
-        finishMeasureButton.trailingAnchor.constraint(equalTo: reinitButton.leadingAnchor, constant: -40).isActive = true
-        finishMeasureButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        finishMeasureButton.addTarget(self, action: #selector(finishMeasureButtonPressed(sender:)), for: .touchUpInside)
     }
     
     private func layoutReinitButton() {
@@ -169,52 +150,47 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         focusButton.translatesAutoresizingMaskIntoConstraints = false
         focusButton.centerXAnchor.constraint(equalTo: self.sceneView.centerXAnchor).isActive = true
         focusButton.centerYAnchor.constraint(equalTo: self.sceneView.centerYAnchor).isActive = true
-        focusButton.addTarget(self, action: #selector(focusButtonPressed(sender:)), for: .touchUpInside)
-    }
-    
-    @objc private func finishMeasureButtonPressed(sender: UIButton) {
-//        guard let currentPos = self.getPositionCenterPlane() else {
-//            return
-//        }
-//        finalNode = createNode(position: currentPos)
-//        sceneView.scene.rootNode.addChildNode(finalNode!)
-        shouldDrawingLine = false
-        finishMeasureButton.isHidden = true
-        focusButton.isHidden = true
     }
     
     @objc private func reinitButtonPressed(sender: UIButton) {
         startNode = nil
         lineNode = nil
         textNode = nil
-        finalNode = nil
-        shouldDrawingLine = true
+        endNode = nil
+        statehitBtn = .none
         focusButton.isHidden = false
-        hitButton.isEnabled = true
-        finishMeasureButton.isHidden = true
-        infoLabel.text = "Distance: 0.00 meters"
         reinitButton.isHidden = true
+        hitButton.setTitle(statehitBtn.label(), for: .normal)
+        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
     }
     
     @objc private func hitButtonPressed(sender: UIButton) {
         print("hit Button")
-        if let vector = getPositionCenterPlane() {
-            let node = createNode(position: vector)
-            sceneView.scene.rootNode.addChildNode(node)
-            startNode = node
-            hitButton.isEnabled = false
-            finishMeasureButton.isHidden = false
-            reinitButton.isHidden = false
+        statehitBtn = statehitBtn == .none ? .draw : .none
+        hitButton.setTitle(statehitBtn.label(), for: .normal)
+        
+        switch statehitBtn {
+        case .none:
+            shouldDrawingLine = false
+            startNode = nil
+            lineNode = nil
+            endNode = nil
+        case .draw:
+            shouldDrawingLine = true
+            if let vector = getPositionCenterPlane() {
+                let node = createNode(position: vector)
+                sceneView.scene.rootNode.addChildNode(node)
+                startNode = node
+                reinitButton.isHidden = false
+            }
         }
-    }
-    
-    @objc private func focusButtonPressed(sender: UIButton) {
-        print("Focus Button")
     }
     
     func getPositionCenterPlane() -> SCNVector3? {
         //detect plane at the center of the view
-        let results = sceneView.hitTest(sceneView.center, types: [.existingPlaneUsingExtent, .existingPlane, .featurePoint])
+        let results = sceneView.hitTest(sceneView.center, types: [.featurePoint])
         if let result = results.first {
             let w = result.worldTransform
             return w.position()
@@ -241,6 +217,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 guard let currentPos = self.getPositionCenterPlane(), let start = self.startNode else {
                     return
                 }
+                
                 self.textNode?.removeFromParentNode()
                 self.endNode?.removeFromParentNode()
                 self.lineNode?.removeFromParentNode()
@@ -255,7 +232,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 self.sceneView.scene.rootNode.addChildNode(self.endNode!)
                 
                 let distance = self.distancebetweenTwoPoints(startVector: start.position, toFinalVector: currentPos)
-                self.infoLabel.text = String(format: "Distance: %.2f meters", distance)
                 
                 let textScn = SCNText(string: "", extrusionDepth: 0.1)
                 textScn.font = .systemFont(ofSize: 5)
@@ -293,6 +269,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         popUpView.startLoader()
+        hitButton.isEnabled = false
         var stateString = "Loading ..."
         popUpView.textInfo = stateString
         switch camera.trackingState {
@@ -311,11 +288,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 popUpView.textInfo = stateString
                 focusButton.isHidden = true
             default:
-                stateString = "Limited..."
+                stateString = "Limited ..."
                 popUpView.textInfo = stateString
                 focusButton.isHidden = true
             }
         case .normal:
+            hitButton.isEnabled = true
             focusButton.isHidden = false
             popUpView.stopLoader()
         }
