@@ -21,19 +21,22 @@
             <rect key="frame" x="0.0" y="0.0" width="226" height="128"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK7-1V-vC7">
-                    <rect key="frame" x="92" y="54" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK7-1V-vC7">
+                    <rect key="frame" x="94.5" y="55" width="37.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="aIu-xg-P5f">
-                    <rect key="frame" x="103" y="80" width="20" height="20"/>
+                    <rect key="frame" x="103" y="78" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="aIu-xg-P5f" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="A18-hb-EJL"/>
+                <constraint firstItem="EK7-1V-vC7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="Obb-KJ-Ma9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EK7-1V-vC7" secondAttribute="trailing" constant="5" id="f7E-xn-4lE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aIu-xg-P5f" secondAttribute="bottom" constant="2" id="md9-hh-JmA"/>
                 <constraint firstItem="aIu-xg-P5f" firstAttribute="top" secondItem="EK7-1V-vC7" secondAttribute="bottom" constant="5" id="oEp-CH-3OU"/>
                 <constraint firstItem="EK7-1V-vC7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="u2n-Bg-B6M"/>
                 <constraint firstItem="EK7-1V-vC7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vLz-B7-cdG"/>
@@ -42,5 +45,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="6" y="-244"/>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="esa-iB-2l8">
+            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <state key="normal" title="Button"/>
+            <point key="canvasLocation" x="101" y="-66"/>
+        </button>
     </objects>
 </document>

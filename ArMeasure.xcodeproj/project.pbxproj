@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0611D24520761A7F009588E2 /* NodeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0611D24420761A7F009588E2 /* NodeComponent.swift */; };
+		0611D24720765234009588E2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0611D24620765234009588E2 /* CustomButton.swift */; };
 		068B04942040264700B35305 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B04932040264700B35305 /* AppDelegate.swift */; };
 		068B04962040264700B35305 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 068B04952040264700B35305 /* art.scnassets */; };
 		068B04982040264700B35305 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B04972040264700B35305 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0611D24420761A7F009588E2 /* NodeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeComponent.swift; sourceTree = "<group>"; };
+		0611D24620765234009588E2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		068B04902040264700B35305 /* ArMeasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArMeasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		068B04932040264700B35305 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		068B04952040264700B35305 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				068B04A12040264700B35305 /* Info.plist */,
 				069E6EF62073AD3800A3AECD /* PoPUpLoadingView.swift */,
 				069E6EF82073AD9C00A3AECD /* PopUpLoadingView.xib */,
+				0611D24420761A7F009588E2 /* NodeComponent.swift */,
+				0611D24620765234009588E2 /* CustomButton.swift */,
 			);
 			path = ArMeasure;
 			sourceTree = "<group>";
@@ -273,6 +279,8 @@
 				068B04982040264700B35305 /* ViewController.swift in Sources */,
 				068B04942040264700B35305 /* AppDelegate.swift in Sources */,
 				069E6EF72073AD3800A3AECD /* PoPUpLoadingView.swift in Sources */,
+				0611D24520761A7F009588E2 /* NodeComponent.swift in Sources */,
+				0611D24720765234009588E2 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
