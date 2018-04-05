@@ -1,5 +1,5 @@
 //
-//  LineNode.swift
+//  NodeComponent.swift
 //  ArMeasure
 //
 //  Created by Hermann Dorio on 05/04/2018.
